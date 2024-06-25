@@ -18,9 +18,9 @@
       @endif 
         <div class="my-3 p-3" style="background-color: hsl(202, 78%, 65%);">    
                 <!-- TOMBOL TAMBAH DATA -->
-                <div class="pb-3 px-4 py-4">
-                  <a href='{{ url("pegawai/create") }}' class="btn btn-primary"> + Data</a>
-                </div>
+              <div class="pb-3 px-4 py-4">
+                <a href='{{ url("pegawai/create") }}' class="btn btn-primary"> + Data</a>
+              </div>
                 <header class="d-flex flex-wrap justify-content-center px-4 py-3 mb-4
                   border-bottom">
                   <a href="/" class="align-items-center mb-3 mb-md-10 me-md-auto

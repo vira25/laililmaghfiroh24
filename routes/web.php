@@ -11,8 +11,6 @@ Route::get('/', function () {
 
 Route::resource('pegawai', pegawaiController::class)->middleware('auth');
 
-Route::middleware('guest')->group(function() {
-});
 Route::get('/login', [LoginController::class, 'index'])->name('login');
 Route::post('/login/login', [LoginController::class, 'login']);
 Route::get('/login/logout', [LoginController::class, 'logout']);

@@ -29,7 +29,7 @@ class LoginController extends Controller
             'email'=> $request->email,
             'password'=> $request->password
         ];
-        if (Auth::attempt( $infologin )) { //untuk mengeluarkan pengguna dari sesi.
+        if (Auth::attempt( $infologin )) { 
            return redirect('pegawai')->with('success', 'Anda berhasil Login');
         } else{
             return redirect('login')->withErrors('Username dan password yang dimasukkan tidak valid');
@@ -38,7 +38,7 @@ class LoginController extends Controller
     
     function logout()
     {
-       Auth::logout();
+       Auth::logout(); //cek langsung logout
         return redirect('/login')->with('success', 'Anda telah logout');
     }  
     
@@ -76,7 +76,7 @@ class LoginController extends Controller
             'password'=> $request->password
         ];
         if (Auth::attempt( $infologin )) {
-           return redirect('pegawai')->with('success', Auth::user()->name, 'berhasil Login');
+           return redirect('login')->with('success', Auth::user()->name, 'berhasil Login');
         } else{
             return redirect('login')->withErrors('Username dan password yang dimasukkan tidak valid');
         }

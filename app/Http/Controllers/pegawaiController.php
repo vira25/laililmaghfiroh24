@@ -54,7 +54,7 @@ class pegawaiController extends Controller
             'level'=>$request->level,
             'Alamat'=>$request->Alamat,
         ];
-        pegawai::create($data);  //Membuat dan menyimpan data baru ke dalam tabel pegawai
+        pegawai::create($data);  
         return Redirect()->to('pegawai')->with('success', 'Data Berhasil Ditambahkan');
     }
 
@@ -82,15 +82,18 @@ class pegawaiController extends Controller
     {
         $request->validate([
             'Nama'=>'required|',
+            'Notelpon'=>'required|',
             'level'=>'required|',
             'Alamat'=>'required|',
         ],[
             'Nama.required'=> 'Nama wajib diisi',
+            'Notelpon'=>'required|',
             'level.required'=> 'level wajib diisi',
             'Alamat.required'=> 'Alamat wajib diisi',
         ]);
         $data =[
             'Nama'=>$request->Nama,
+            'Notelpon'=>$request->Notelpon,
             'level'=>$request->level,
             'Alamat'=>$request->Alamat,
         ];

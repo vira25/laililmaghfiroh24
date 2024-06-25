@@ -20,7 +20,7 @@
         </div>
     @endif
         <div style="background-color: rgb(255, 254, 255);" class="w-50 center border rounded px-3 py-3 mx-auto">
-        <h1 class="text-center mb-4 " style="font-style:italic;">Login</h1>
+        <h1 class="text-center mb-4" style="font-style:italic;">Login</h1>
             <form class="pb-3" action={{ url('/login/login') }} method="POST">
                 @csrf 
                 @method('post')

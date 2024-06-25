@@ -18,7 +18,6 @@ return new class extends Migration
             $table->unique('Notelpon');
             $table->string('level');
             $table->string('Alamat');
-            
         });
     }
 
