@@ -10,20 +10,10 @@ class pegawaiController extends Controller
 {
     /**
      * Display a listing of the resource.
-     */
-    public function index(Request $request)
+     */                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                             
+    public function index()
     {
-        $katakunci = $request->katakunci;
-        $jumlahbaris = 2;
-        if(strlen($katakunci)){
-            $data = pegawai::where('Notelpon','like',"%$katakunci%")
-                ->orWhere('Nama', 'like', "%$katakunci%")
-                ->orWhere('level', 'like', "%$katakunci%")
-                ->orWhere('Alamat', 'like', "%$katakunci%")
-                ->paginate($jumlahbaris);
-        } else{
-            $data = pegawai::orderBy('Nama','desc')->paginate($jumlahbaris);
-        }
+        $data = pegawai::orderBy('Nama','desc')->paginate(4); // paginate(4) untuk memberikan batas pada hal paginat
         return view('pegawai.index')->with('data', $data);
     }
 
@@ -32,7 +22,7 @@ class pegawaiController extends Controller
      */
     public function create()
     {
-         return view('pegawai.create');
+         return view('pegawai.create'); 
     }
 
     /**
@@ -40,12 +30,12 @@ class pegawaiController extends Controller
      */
     public function store(Request $request)
     {
-        Session::flash('Nama', $request->Nama);
+        Session::flash('Nama', $request->Nama); //untk menyimpan data sementara
         Session::flash('Notelpon', $request->Notelpon);
         Session::flash('level', $request->level);
         Session::flash('Alamat', $request->Alamat);
         
-        $request->validate([
+        $request->validate ([
             'Nama'=>'required|',
             'Notelpon'=>'required|numeric|unique:pegawai,Notelpon',
             'level'=>'required|',
@@ -64,8 +54,7 @@ class pegawaiController extends Controller
             'level'=>$request->level,
             'Alamat'=>$request->Alamat,
         ];
-        pegawai::create($data);
-
+        pegawai::create($data);  //Membuat dan menyimpan data baru ke dalam tabel pegawai
         return Redirect()->to('pegawai')->with('success', 'Data Berhasil Ditambahkan');
     }
 
@@ -82,7 +71,7 @@ class pegawaiController extends Controller
      */
     public function edit(string $id)
     {
-        $data = pegawai::where('Nama',$id)->first();
+        $data = pegawai::where('Nama',$id)->first(); 
         return view("pegawai.edit")->with('data', $data); 
     }
 
@@ -105,8 +94,8 @@ class pegawaiController extends Controller
             'level'=>$request->level,
             'Alamat'=>$request->Alamat,
         ];
-        pegawai::where('Notelpon', $id)->update($data);
-        return Redirect()->to('pegawai')->with('success', 'Data telah diupdate');
+        pegawai::where('Notelpon', $id)->update($data); 
+        return Redirect()->to('pegawai')->with('success', 'Data telah diupdate'); // jika validate berhasil akan disimpan dan diarakan ke hal pegawai dengan notofikasi data telah diupdate/success
     }
 
     /**
@@ -114,7 +103,7 @@ class pegawaiController extends Controller
      */
     public function destroy(string $id)
     {
-        pegawai::where('Notelpon', $id)->delete();
+        pegawai::where('Notelpon', $id)->delete(); 
         return redirect()->to('pegawai')->with('success', 'Data berhasil dihapus');
     }
 

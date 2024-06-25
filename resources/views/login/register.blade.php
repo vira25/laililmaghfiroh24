@@ -6,8 +6,8 @@
     <title>Data Pegawai</title>
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-iYQeCzEYFbKjA/T2uDLTpkwGzCiq6soy8tYaI1GyVh/UjpbCx/TYkiZhlZB6+fzT" crossorigin="anonymous">
   </head>
-  <body  style="background-color: hsl(190, 90%, 50%);" >  
-    <main class="container">
+  <body  style="background-color: rgb(186, 19, 236);" >  
+    <main class="container" py-5>
         @if ($errors->any())
         <div class="pt-3">
             <div class="alert alert-danger">
@@ -19,11 +19,14 @@
             </div>
         </div>
     @endif
-        <div class="w-50 center border rounded px-3 py-5 mx-auto">
-        <h1 class="text-center mb-4 " style="font-style:italic;">Login</h1>
-            <form class="pb-3" action={{ url('/sesi/login') }} method="POST">
+        <div style="background-color: rgb(255, 254, 255);" class="w-50 center border rounded px-3 py-3 mx-auto">
+        <h1 class="text-center mb-4 " style="font-style:italic;">Register</h1>
+            <form action="/login/create" method="POST">
                 @csrf 
-                @method('post')
+                <div class="mb-3">
+                    <label form="name" class="form-label">Nama</label>
+                    <input type="text" name="name" value="{{Session::get('name')}}" class="form-control">
+                </div>
                 <div class="mb-3">
                     <label form="email" class="form-label">Email</label>
                     <input type="email" name="email" value="{{Session::get('email')}}" class="form-control">
@@ -33,12 +36,13 @@
                     <input type="password" name="password" class="form-control">
                 </div>
                 <div class="mb-3 d-grid">
-                    <button name="submit" type="submit" class="btn btn-primary">Login</button>
-                </div>
+                    <button name="submit" type="submit" class="btn btn-primary">Register</button>
                 <li class="nav-item">
-                    <a>Sudah Punya Akun????, silahlan daftar duluu!!!</a>
-                    <a href="/sesi/register" class="nav-link center border mx-auto" type="submit">Sing in</a>
+                 <a>Sudah Punya Akun? silahkan Login</a>
+                <a href="{{ url('login')}}" class="nav-link center border mx-auto d-inline" type="submit">Sing in</a>
                 </li>
+                    {{--  href="{{ url('login')}}" --}}
+                </div>
             </form>
 
         </div>

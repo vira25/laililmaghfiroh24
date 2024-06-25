@@ -8,7 +8,7 @@ use Illuminate\Database\Eloquent\Model;
 class pegawai extends Model
 {
     use HasFactory;
-    protected $fillable = ['Nama', 'Notelpon', 'level', 'Alamat'];
+    protected $fillable = ['Nama', 'Notelpon', 'level', 'Alamat']; //untuk mengizinkan tabel untuk diisi
     protected $table = 'pegawai';
-    public $timestamps = false;
+    public $timestamps = false; //untuk memberikan informasi pada laravel jika tidka menggunakan timestamps
 }

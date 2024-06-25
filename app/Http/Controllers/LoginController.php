@@ -8,15 +8,15 @@ use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Support\Facades\Session;
 
-class SessionContoller extends Controller
+class LoginController extends Controller
 {
     function index()
     {
-        return view("sesi/index");
+        return view("login/index");
     }
     function login(Request $request)
     {
-        Session::flash('email', $request->email);
+        Session::flash('email', $request->email); //untuk menyimpan email sementara
         $request->validate([
             'email'=>'required',
             'password'=>'required'
@@ -29,22 +29,22 @@ class SessionContoller extends Controller
             'email'=> $request->email,
             'password'=> $request->password
         ];
-        if (Auth::attempt( $infologin )) {
+        if (Auth::attempt( $infologin )) { //untuk mengeluarkan pengguna dari sesi.
            return redirect('pegawai')->with('success', 'Anda berhasil Login');
         } else{
-            return redirect('sesi')->withErrors('Username dan password yang dimasukkan tidak valid');
+            return redirect('login')->withErrors('Username dan password yang dimasukkan tidak valid');
         }
     }
     
     function logout()
     {
        Auth::logout();
-        return redirect('/sesi')->with('success', 'Anda telah logout');
+        return redirect('/login')->with('success', 'Anda telah logout');
     }  
     
     function register()
     {
-        return view('sesi/register');
+        return view('login/register');
     }
     
     function create(Request $request) 
@@ -78,7 +78,7 @@ class SessionContoller extends Controller
         if (Auth::attempt( $infologin )) {
            return redirect('pegawai')->with('success', Auth::user()->name, 'berhasil Login');
         } else{
-            return redirect('sesi')->withErrors('Username dan password yang dimasukkan tidak valid');
+            return redirect('login')->withErrors('Username dan password yang dimasukkan tidak valid');
         }
     }
 

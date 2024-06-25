@@ -9,7 +9,7 @@
   <body style="background-color: #7b858f">
 <!-- START FORM -->
 <main class="container">
-<form action='{{ url("pegawai/".$data->Notelpon) }}' method='POST'>
+<form action='{{ url("pegawai/".$data->Notelpon) }}' method='POST'> 
     @csrf
     @method('PUT')
         <div style="background-color: #9fa7af" class="my-3 p-3">
@@ -21,10 +21,12 @@
                 </div>
             </div>
             <div class="mb-3 row">
-                <label for="Nama" class="col-sm-2 col-form-label">No telpon</label>
+                <label for="Notelpon" class="col-sm-2 col-form-label">No telpon</label>
                 <div class="col-sm-10">
-                   {{ $data->Notelpon }}>
+                    <input type="string" class="form-control" name='Notelpon' value="{{ $data->Notelpon }}" id="Notelpon">
+                </div>
             </div>
+            {{-- {{ $data->Notelpon }}> <!-- menunjukan jika notelpon tidak bisa diupdate  --> --}}
             <div class="mb-3 row">
                 <label for="Nama" class="col-sm-2 col-form-label">Level</label>
                 <div class="col-sm-10">

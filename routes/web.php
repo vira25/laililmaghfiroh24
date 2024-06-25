@@ -1,19 +1,20 @@
 <?php
 
 use App\Http\Controllers\pegawaiController;
-use App\Http\Controllers\SessionContoller;
-use App\Models\pegawai;
+use App\Http\Controllers\LoginController; 
 use Illuminate\Support\Facades\Route;
 
 Route::get('/', function () {
     return view('welcome');
 });
 
-Route::resource('pegawai', pegawaiController::class);
 
+Route::resource('pegawai', pegawaiController::class)->middleware('auth');
 
-Route::get('/sesi', [SessionContoller::class, 'index']);
-Route::post('/sesi/login', [SessionContoller::class, 'login']);
-Route::get('/sesi/logout', [SessionContoller::class, 'logout']);
-Route::get('/sesi/register', [SessionContoller::class, 'register']);
-Route::post('/sesi/create', [SessionContoller::class, 'create']);
+Route::middleware('guest')->group(function() {
+});
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::post('/login/login', [LoginController::class, 'login']);
+Route::get('/login/logout', [LoginController::class, 'logout']);
+Route::get('/login/register', [LoginController::class, 'register']);
+Route::post('/login/create', [LoginController::class, 'create']);
